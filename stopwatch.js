@@ -10,9 +10,19 @@ let displayMilliseconds = 0;
 let displaySeconds = 0;
 let displayMinutes = 0;
 
-let interal = null;
+// lap units
+
+let lapMilliseconds = displayMilliseconds;
+let lapSeconds = displaySeconds;
+let lapMinutes = displayMinutes;
+
+let interval = null;
 
 let clockStatus= 'stopped';
+
+let lapCounter = 1;
+
+const tableArr = [];
 
 // stopwatch - timer
 
@@ -55,7 +65,7 @@ function startStop() {
         interval = window.setInterval(stopwatch, 10);
         document.getElementById('startStop').innerHTML = 'Stop';
         document.getElementById('lapReset').innerHTML = 'Lap';
-        clockStatus = 'started'
+        clockStatus = 'started';
     } else {
         window.clearInterval(interval);
         document.getElementById('startStop').innerHTML = 'Start';
@@ -69,8 +79,10 @@ function startStop() {
 function lapReset() {
     if(clockStatus === 'started') {-
         addRow('lapTable');
+        lapCounter++;
     } else {
-        window.clearInterval(interal);
+        lapCounter = 1;
+        window.clearInterval(interval);
         milliseconds = 0;
         seconds = 0;
         minutes = 0;
@@ -79,19 +91,15 @@ function lapReset() {
         for(let i = document.getElementById('lapTable').rows.length - 1; i > -1; i--) {
             document.getElementById('lapTable').deleteRow(i);
         }
-
-        // document.getElementById('lapTable').rows.map(row => {
-        //     row.deleteRow()
-        // })
     }
 }
 
 function addRow(tableId) {
     let tableRef = document.getElementById(tableId);
-    let newRow = tableRef.insertRow(-1);
+    let newRow = tableRef.insertRow(0);
     let newLapCell = newRow.insertCell(0);
     let newTimeCell = newRow.insertCell(1);
-    let lapText = document.createTextNode('Lap')
+    let lapText = document.createTextNode('Lap ' + lapCounter)
     let timeText = document.createTextNode(displayMinutes + ':' + displaySeconds + ':' + displayMilliseconds);
     newTimeCell.appendChild(timeText);
     newLapCell.appendChild(lapText);
