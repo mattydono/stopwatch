@@ -22,7 +22,12 @@ button {
     border: none;
 }
 
+table {
+    color: white;
+}
+
 #display {
     margin-top: 10%;
     font-size: 4rem;
+    color: white;
 }

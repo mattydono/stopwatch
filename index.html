@@ -8,14 +8,16 @@
             <div class="container">
                 <div>
                     <div id="display" >00:00:00</div>
-                    <button id="lapReset" onclick="lapReset()"">Reset</button>
-                    <button id="startStop" onclick="startStop()"">Start</button>
+                    <!-- <button id="lapReset" disabled='true' onclick="timer.lapReset()">Lap</button> -->
+                    <button id="lapReset" onclick="timer.lapReset()">Lap</button>
+                    <button id="startStop" onclick="timer.startStop()">Start</button>
                     <table id='lapTable'>
                         <tbody />
                     </table>
                 </div>
             </div>
         </div>
-        <script src="stopwatch.js" async defer></script>
+        <!-- <script src='stopwatch.js'></script> -->
+        <script src='refactor.js'></script>
     </body>
 </html>
